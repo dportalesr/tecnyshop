@@ -1,4 +1,4 @@
-body { background:#EEE /*url(/img/bg.jpg) repeat-x top;*/ }
+body { background:#fff; }
 a, a:visited { color:#555;text-decoration:none;outline:0; }
 a:hover, a:focus { color:#000;text-decoration:underline; }
 .mceEditor{ display:block;padding:0;background:none;	} /* Outline fix for validation errors */
@@ -74,8 +74,9 @@ h3:first-child, h3.alpha { margin-top:0; }
 #header {
 	overflow:visible; /* Cuz Cart */
 	position:relative;
-	background:#CDCDCD;
+	height: 105px;
 	z-index:1;/*IE7*/
+	background: #ddd;
 }
 
 #logo {

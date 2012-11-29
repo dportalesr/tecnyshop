@@ -22,7 +22,7 @@
 <meta itemprop="description" content="<?=$og_for_layout['description']?>" />
 <meta itemprop="image" content="<?=$og_for_layout['image']?>" />
 
-<?=$html->css(array('generic','main','pulsembox'))?> 
+<?=$html->css(array('generic','main','pulsembox','http://fonts.googleapis.com/css?family=Signika:700,300'))?> 
 </head>
 <?php
 echo
