@@ -31,38 +31,16 @@ $config['Site']['og'] = array(
 */
 $modules = array(
 	'about'=>array('nosotros','menu','admin'=>array('pages')),
+	'medio_ambiente'=>array('Medio Ambiente','menu','admin'=>array('pages')),
 	'carousels'=>array('Carrusel','admin'=>array('photos')),
 	'banners'=>array('admin'=>array('banners')),
 
-	'albums'=>array('Galería','admin'=>array('photos')),
-		'albumimgs'=>array('imágenes','admin'=>false),
-	'videos'=>array('Videos','admin'=>array('videos')),
-	'events'=>array('Eventos','admin'=>array('')),
-		'eventimgs'=>array('imágenes','admin'=>false),
-	'posts'=>array('blog','menu','admin'=>array('posts')),
-		'postimgs'=>array('imágenes','admin'=>false),
-		'comments'=>array('comentarios','admin'=>array('comment')),
-
-	'links'=>array('Links','admin'=>array('links')),
-	'nodes'=>array('Páginas','admin'=>array('pages')),
-		'nodeimgs'=>array('imágenes','admin'=>false),
-
-	'products'=>array('productos','menu','admin'=>array('')),
+	'products'=>array('productos','admin'=>array('')),
 		'productimgs'=>array('Imágenes','admin'=>false),
 		'categories'=>array('categorías','admin'=>array('tags')),
-	'currencies'=>array('monedas','admin'=>array('')),
-	'types'=>array('Tipos de producto','singu'=>'tipo','admin'=>array('tags')),
-	'orders'=>array('Órdenes de compra','singu'=>'órden','admin'=>array('')),
-	'order_detail'=>array('Detalle de órden de compra','admin'=>false),
-
-	'polls'=>array('encuestas','admin'=>array('faqs')),
-		'questions'=>array('preguntas','admin'=>false),
-		'answers'=>array('Encuestas','admin'=>false),
-		'visitors'=>array('visitantes','admin'=>false),
 
 	'contacto'=>array('menu','admin'=>false),
 	'users'=>array('Usuarios','admin'=>array('users'))
-
 );
 
 $cached_modules = Cache::read('sitemodules');
