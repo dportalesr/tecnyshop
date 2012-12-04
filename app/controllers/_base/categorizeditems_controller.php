@@ -17,7 +17,8 @@ class CategorizeditemsController extends ItemsController{
 			$this->set('category', $item[$this->m[0]->baseCategory] ? $item[$this->m[0]->baseCategory] : false);
 			$this->set('path',$this->m[0]->{$this->m[0]->baseCategory}->getpath($item[$this->m[0]->baseCategory]['id']));
 			//$this->set('related',$this->m[0]->find_(array('contain'=>array($this->uses[0].'portada'),'field'=>'id','value'=>$item[$this->uses[0]]['id']),'neighbors'));
-			$this->pageTitle = $item[$this->uses[0]][$this->m[0]->displayField];
+			$this->seo($item);
+
 		} else
 			$this->redirect(array('action'=>'index'));
 	}
@@ -32,6 +33,7 @@ class CategorizeditemsController extends ItemsController{
 			$this->pageTitle = $category[$this->m[0]->baseCategory][$this->m[0]->{$this->m[0]->baseCategory}->displayField];
 		} else
 			$this->redirect(array('action'=>'index'));
+			
 		$this->detour('','index');
 	}
 

@@ -17,14 +17,14 @@ if($data = empty($data) ? Cache::read(strtolower($model).'_showcase') : $data){
 
 		if($url === true){
 			$it['enlace'] = '/'.$it['src'];
-			$class = ' pulsembox';
+			$class = 'pulsembox';
 		}
 		
 		if(!empty($it['enlace']))
 			echo $html->link(
 				$size ? $resize->resize($it['src'],array('w'=>$size[0],'h'=>$size[1])) : $html->image('/'.$it['src']),
 				$url && $url !== true ? $url : $it['enlace'],
-				array('target'=>'_blank','rel'=>'nofollow','class'=>'item'.$class)
+				array('target'=>'_blank','rel'=>'nofollow','class'=>'item '.$class)
 			);
 		else
 			echo $size ? $resize->resize($it['src'],array('w'=>$size[0],'h'=>$size[1],'atts'=>array('class'=>'item'))) : $html->image('/'.$it['src'],array('class'=>'item'));

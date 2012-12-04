@@ -1,0 +1,9 @@
+<?php
+echo
+	$this->element('adminhdr',array('links'=>array('back'))),
+	$this->element('inputs',array('schema'=>array(
+		'keywords'=>array('class'=>'deselector'),
+		'description'=>array('class'=>'deselector'),
+	))),
+	$this->element('tinymce',array('advanced'=>1,'size'=>'m','deselector'=>'deselector'));
+?>

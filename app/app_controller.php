@@ -1,7 +1,7 @@
 <?php
 uses('L10n');
 class AppController extends Controller {
-	var $components = array('Cookie','RequestHandler','Simplepie','Session');
+	var $components = array('Cookie','RequestHandler','Simplepie','Session','Cart');
 	var $helpers = array('Html', 'Form', 'Session','Js','Moo','Util','Text','Resize');
 	var $detour = false;
 	var $detourFrom = false;
@@ -55,22 +55,14 @@ class AppController extends Controller {
 		
 		//// CACHE
 		if(strpos($this->action,'admin_')===false){
+			/*
 			if(Cache::read(strtolower('Banner').'_recent') === false){
 				$this->loadModel('Banner');
 				Cache::write(strtolower('Banner').'_recent',$this->Banner->find_(array('contain'=>false)));
 			}
+			*/
 			
-			if(true || Cache::read('category_product_recent') === false){
-				$this->loadModel('Category');
-				
-				Cache::write('category_product_recent',$this->Category->find_(array(
-					'contain'=>array('Product'=>array(
-						'fields'=>array('id','category_id','nombre','slug'),
-						'order'=>'Product.orden ASC'
-					)),
-					'fields'=>array('id','parent_id','slug','nombre')
-				)));
-			}
+			//fcache
 		}
 			
 		//// Session
@@ -197,10 +189,10 @@ class AppController extends Controller {
 		$siteVars = Configure::read('Site');
 		
 		foreach($layoutVars as $layoutVar){
-			if(!isset($this->viewVars[$layoutVar.'_for_layout'])){
+			if(empty($this->viewVars[$layoutVar.'_for_layout'])){
 				$layoutVarContent = '';
 
-				if(isset($siteVars[$layoutVar]) && $siteVars[$layoutVar]){
+				if(!empty($siteVars[$layoutVar])){
 					if(is_array($siteVars[$layoutVar])){
 						if(isset($siteVars[$layoutVar][$this->params['controller']])){
 							$layoutVarContent = $siteVars[$layoutVar][$this->params['controller']];
@@ -220,7 +212,7 @@ class AppController extends Controller {
 
 		$this->set('title_for_layout',isset($this->pageTitle) ? $this->pageTitle : $this->ts);
 		
-		if(isset($this->params['isAjax'])&& $this->params['isAjax'])
+		if(!empty($this->params['isAjax']))
 			$this->viewPath = $this->action = 'ajax';
 		elseif($this->viewPath != 'errors'){
 			if(!$this->detour)

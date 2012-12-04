@@ -55,8 +55,8 @@ class UtilHelper extends AppHelper {
 
 			if($opts['descripcion']){
 				if(isset($item[$opts['descripcion']]) && $item[$opts['descripcion']]){
-					$opts['atts']['name'] = _dec($item[$opts['descripcion']]);
-					$opts['atts']['title'] = strip_tags($opts['atts']['name']);
+					$opts['atts']['title'] = substr(strip_tags(_dec($item[$opts['descripcion']])),0,155);
+					$opts['atts']['name'] = $item[$opts['descripcion']];
 				}
 			}
 

@@ -18,26 +18,7 @@ class ItemsController extends AbcsController{
 		if($item = $this->m[0]->read(null,$id)){
 			$this->set(compact('item'));
 			$this->set('related',$this->m[0]->find_(array('recursive'=>0,'field'=>'orden','value'=>$item[$this->uses[0]]['orden']),'neighbors'));
-			$this->pageTitle = $item[$this->uses[0]][$this->m[0]->displayField];
-			$descripcion = substr(strip_tags($item[$this->uses[0]]['descripcion']), 0, 300);
-
-			$this->set('description_for_layout',$descripcion);
-			
-			/// og:meta
-			$og_for_layout = array(
-				'title'=>$item[$this->uses[0]]['nombre'],
-				'type'=>'article',// blog, article
-				'url'=>'http://'.Configure::read('Site.domain').$this->here,
-				'description'=>$descripcion,
-
-				'itemtype'=>'article' //article
-			);
-
-			if(!empty($item[$this->uses[0].'portada']['src']))
-				$og_for_layout['image'] = 'http://'.Configure::read('Site.domain').'/'.$item[$this->uses[0].'portada']['src'];
-
-			$og_for_layout = array_merge(Configure::read('Site.og'),$og_for_layout);
-			$this->set(compact('og_for_layout'));
+			$this->seo($item);
 		}
 		
 		if($hasComments){
@@ -111,6 +92,42 @@ class ItemsController extends AbcsController{
 		$offset = $offset < 0 ? 0 : $offset;
 		$this->set(compact('offset'));
 		$this->data['limit'] = $limit;
+	}
+
+	function seo($item){
+		$this->pageTitle = $item[$this->uses[0]][$this->m[0]->displayField];
+		
+		$descripcion = '';
+		if(!empty($item[$this->uses[0]]['description']))
+			$descripcion = $item[$this->uses[0]]['description'];
+		elseif(!empty($item[$this->uses[0]]['descripcion']))
+			$descripcion = $item[$this->uses[0]]['descripcion'];
+
+		$descripcion = substr(strip_tags(_dec($descripcion)), 0, 155);
+
+		$this->set('description_for_layout',$descripcion);
+
+		$keywords = '';
+		if(!empty($item[$this->uses[0]]['keywords']))
+			$keywords = $item[$this->uses[0]]['keywords'];
+
+		$this->set('keywords_for_layout',$keywords);
+		
+		/// og:meta
+		$og_for_layout = array(
+			'title'=>$item[$this->uses[0]]['nombre'],
+			'type'=>'article',// blog, article
+			'url'=>'http://'.Configure::read('Site.domain').$this->here,
+			'description'=>$descripcion,
+
+			'itemtype'=>'article' //article
+		);
+
+		if(!empty($item[$this->uses[0].'portada']['src']))
+			$og_for_layout['image'] = 'http://'.Configure::read('Site.domain').'/'.$item[$this->uses[0].'portada']['src'];
+
+		$og_for_layout = array_merge(Configure::read('Site.og'),$og_for_layout);
+		$this->set(compact('og_for_layout'));
 	}
 
 }

@@ -18,7 +18,7 @@ echo
 	$html->div('nofooter'),
 		$html->div('header'),
 			$html->link('Cerrar Sesión',array('admin'=>1,'controller'=>'users','action'=>'logout'),array('class'=>'logout','title'=>'Finalizar sesión como administrador','escape'=>false)),
-			$html->link($html->image('admin/logo.jpg',array('alt'=>$sitename_for_layout)),'/',array('id'=>'logo','title'=>'Ir al Inicio')),
+			$html->link($html->image('/img/logo.jpg',array('alt'=>$sitename_for_layout)),'/',array('id'=>'logo','title'=>'Ir al Inicio')),
 			$html->tag('span','Panel de Administración',array('id'=>'title')),
 		'</div>';
 			
@@ -40,8 +40,10 @@ echo
 		$html->div('cleaner',''),
 	'</div>',
 	$html->div('footer'),
+	/*
 		$html->link('','http://pulsem.mx',array('id'=>'pulsem','title'=>'Web + Identidad + Consultoría')),
 		$html->para('','Web | Identidad | Consultoría'),
+	*/
 	'</div>',
 
 	///////	
