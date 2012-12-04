@@ -32,7 +32,7 @@ if($data = empty($data) ? Cache::read(strtolower($model).'_showcase') : $data){
 		$descripcion = '';
 		if(!empty($it['descripcion']))
 			$descripcion = $it['descripcion'];
-		elseif(!empty($it['descripcion_'.$_lang]))
+		elseif(!(empty($_lang) || empty($it['descripcion_'.$_lang])))
 			$descripcion = $it['descripcion_'.$_lang];
 
 		echo $html->div('caption',$descripcion);

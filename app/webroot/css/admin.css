@@ -22,7 +22,7 @@ form.catalog .separator { margin-top:30px;border-top:#999 solid 1px;padding-top:
 div.uploadinfo { padding:4px 0;font-weight:bold; }
 div.uploadinfo a{ text-decoration:underline; }
 
-.inlinelabel { display:inline !important;padding:0 6px;border:0;background:none; }
+.inlinelabel { display:inline !important;padding:0 6px;border:0 !important;background:transparent !important; }
 
 .catalog label,
 .catalog .label,
@@ -174,7 +174,7 @@ div.uploadinfo a{ text-decoration:underline; }
 	cursor:pointer;
 }
 .elist .elist_item .elist_handler { background-image:url(/img/admin/handler.png); }
-.elist .elist_item .elist_zoom { background-image:url(/img/admin/zoom.gif); }
+.elist .elist_item .elist_zoom { background-image:url(/img/admin/zoom.png); }
 .elist .elist_item .elist_remove { background-image:url(/img/admin/close.gif); }
 .elist .elist_item .input.text { display:-moz-inline-stack;display:inline-block;vertical-align:top;zoom:1;*display:inline; }
 .elist .elist_item .input.text.hide { display:none; }

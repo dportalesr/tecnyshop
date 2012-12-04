@@ -3,8 +3,7 @@ echo
 	$this->element('top'),
 	$html->div('clear'),
 		$html->div('form'),
-			$html->div('title title2','Ponte en Contacto'),
-			$html->para('note',''),
+			$html->para('note','¿Tienes alguna duda, quieres solicitar alguna información o simplemente dejarnos un comentario? Ponemos a tu disposición el siguiente formulario garantizándote una pronta respuesta.'),
 	
 			$form->create('Contact',array('id'=>'ContactForm','url'=>'/contacto/enviar')),
 			$form->input('mail',array('div'=>'hide')),
@@ -20,10 +19,11 @@ echo
 			'</div>',
 		'</div>',
 		$html->div('info'),
-			$html->div('title title3','Oficinas'),
-			$html->para(null,'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'),
-			$html->para(null,'Sed diam nonummy nibh euismod tincidunt.'),
-			$html->para(null,'laoreet dolore magna.'),
+			$html->para(null,'TECNY <br/>01-800 00 83269'),
+			$html->para(null,'EGGER <br/>01-800 00 34437'),
+			$html->para(null,'Teléfonos <br/>52-33-38178409 <br/>52-33-38178505'),
+			$html->para(null,'Buenos Aires #2260 <br/>Col. providencia <br/> Guadalajara, Jalisco, México.'),
+			$html->para('email',$util->ofuscar('info@'.Configure::read('Site.domain'))),
 			/*
 			$html->div('title title3','Cómo llegar'),
 			$html->link($html->image('mapa.jpg'),'/img/mapa.jpg',array('class'=>'pulsembox mapa')),
@@ -35,3 +35,4 @@ echo
 ?>
 </div>
 </div>
+<?php echo $this->element('sidebar'); ?>

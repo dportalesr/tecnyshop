@@ -1,11 +1,14 @@
 <?php
 class Contact extends AppModel {
 	var $name = 'Contact';
+	var $labels = array('telefono'=>'Teléfono');
 	var $_schema = array(
 		'nombre' =>array('type'=>'string', 'length'=>100),
 		'email' =>array('type'=>'string', 'length'=>255),
-		'empresa' =>array('type'=>'string', 'length'=>255),
-		'mensaje' =>array('type'=>'text')
+		'telefono' =>array('type'=>'string', 'length'=>255),
+		'ciudad' =>array('type'=>'string', 'length'=>255),
+		'estado' =>array('type'=>'string', 'length'=>255),
+		'comentarios' =>array('type'=>'text')
 	);
 	var $actsAs = array('Captcha');
 	var $useTable = false;
@@ -36,7 +39,7 @@ class Contact extends AppModel {
 				'message' => 'Este campo no puede quedar vacío.'
 			)		
 		),
-		'mensaje' => array(
+		'comentarios' => array(
 			'rule' => 'notEmpty',
 			'required' => true,
 			'allowEmpty' => false,

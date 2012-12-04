@@ -22,7 +22,7 @@
 <meta itemprop="description" content="<?=$og_for_layout['description']?>" />
 <meta itemprop="image" content="<?=$og_for_layout['image']?>" />
 
-<?=$html->css(array('generic','main','pulsembox','http://fonts.googleapis.com/css?family=Signika:700,300'))?> 
+<?=$html->css(array('generic','main','pulsembox','http://fonts.googleapis.com/css?family=Signika:700,300','mooshowcase'))?> 
 </head>
 <?php
 echo
@@ -33,12 +33,11 @@ echo
 				$this->element('menu'),
 				$html->div('headerInfo'),
 					$html->para(null,'Contáctanos'),
-					$html->para(null,'01(800) 00-34437 (egger)'),
 					$html->para(null,'01(800) 00-83269 (tecny)'),
+					$html->para(null,'01(800) 00-34437 (egger)'),
 				'</div>',
 			'</div>',
-			$html->div(null,$content_for_layout.'',array('id'=>'body')),
-			$html->div(null,'',array('id'=>'cleaner')),
+			$html->div(null,$content_for_layout.$html->div('clearboth',''),array('id'=>'body')),
 		'</div><!-- #nofooter -->',
 
 		$this->element('footer');
@@ -47,7 +46,7 @@ echo
   <script>window.MooTools || document.write('<script src="/js/moo13.js"><\/script>')</script>
 <?php
 	echo
-		$html->script(array('moo13m','utils','pulsembox')),
+		$html->script(array('moo13m','utils','pulsembox','mooshowcase')),
 		$scripts_for_layout,
 		$moo->writeBuffer(array('onDomReady'=>false)),
 	'';

@@ -169,7 +169,7 @@ class UtilHelper extends AppHelper {
 
 	function toggle($value, $id = false, $field = 'activo', $exclusive = false) {
 		$toggle = $this->Html->image('admin/'.($value ?'yes':'no').'.png');
-		if($id) $toggle = $this->Html->link($toggle, am(array('admin'=>1, 'action'=>'toggle', $id, $field, $exclusive),$this->params['named']));
+		if($id) $toggle = $this->Html->link($toggle, array_merge(array('admin'=>1, 'action'=>'toggle', $id, $field, $exclusive),$this->params['named']));
 		return $toggle;
 	}
 
@@ -202,27 +202,30 @@ class UtilHelper extends AppHelper {
 	}
 
 	function recursivelist($data = false, $opts = array(),$filtermode = false){
+		$output = '';
 		$opts = array_merge(array(
 			'current'=>false,
-			'listClass'=>'children',
+			'class'=>'children',
 			'model'=>false,
 			'belongs'=>false,
+			'leafs_only'=>false,
 			'route_param'=>false,
 			'urlmerge'=>array(),
 			'action'=>'ver'
 		),$opts);
 
 		if($data && is_array($data)){
-			echo $this->Html->tag('ul',null,array('class'=>$opts['listClass']));
-			
 			foreach($data as $it){
+				$is_leaf = empty($it['children']);
+
 				if(isset($it[$opts['model']]['externo']) && $it[$opts['model']]['externo']){
 					$atts = array('target'=>'_blank','rel'=>'nofollow','class'=>'external');
 					$url = $it[$opts['model']]['enlace'];
+
 				} else {
 					$atts = array();
 					if($filtermode){
-						$url = am(array(
+						$url = array_merge(array(
 							'controller'=>'search',
 							'action'=>'resultados',
 							low($opts['model']).'_id'=> $it[$opts['model']]['id']
@@ -233,34 +236,34 @@ class UtilHelper extends AppHelper {
 							'action'=>$opts['action']
 						);
 
-						$slug = isset($it[$opts['model']]['slug']) ? $it[$opts['model']]['slug']:$it[$opts['model']]['id'];
+						$slug = isset($it[$opts['model']]['slug']) ? $it[$opts['model']]['slug'] : $it[$opts['model']]['id'];
 
 						if($opts['route_param'])
 							$url[$opts['route_param']] = $slug;
 						else
 							$url[] = $slug;
 						
-						$url = am($url, $opts['urlmerge']);
+						$url = array_merge($url, $opts['urlmerge']);
 					}
 
 				}
 
-				echo
-					$this->Html->tag('li',null,array(
-						'class'=>($opts['current'] && $it[$opts['model']]['id']==$opts['current']['id'] ? 'selected':''))
-					),
-					$this->Html->link($this->Html->tag('span',$it[$opts['model']]['nombre']), $url,$atts);
+				$output.= $this->Html->tag('li',null,array('class'=>($opts['current'] && $it[$opts['model']]['id']==$opts['current']['id'] ? 'selected':'')));
+					if($opts['leafs_only'] && !$is_leaf)
+						$output.= $this->Html->tag('span',$it[$opts['model']]['nombre']);
+					else
+						$output.= $this->Html->link($this->Html->tag('span',$it[$opts['model']]['nombre']), $url,$atts);
 
-				if(isset($it['children']) && $it['children']){
-					$opts['listClass']='';
-					echo $this->recursivelist($it['children'],$opts);
-				}
+					if(!$is_leaf)
+						$output.= $this->recursivelist($it['children'],array_merge($opts,array('class'=>'')));
 
-				echo '</li>';
+				$output.= '</li>';
 			}
-			echo '</ul>';
+
+			$output = $this->Html->tag('ul',$output,array('class'=>$opts['class']));
 		}
-		return;
+
+		return $output;
 	}
 
 	function resize($src,$neww=0,$newh=0){

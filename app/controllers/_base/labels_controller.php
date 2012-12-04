@@ -37,5 +37,24 @@ class LabelsController extends AbcsController{
 		
 		$this->detour('_base/labels');
 	}
+
+	function admin_editar($id = false, $parent = false){
+		$id = $this->_checkid($id);
+		$this->m[0]->id = $id;
+		
+		if(empty($this->data)){
+			$this->m[0]->recursive = -1;
+			$this->data = $this->m[0]->read();
+			$this->m[0]->clean($this->data,true);
+
+		} else {
+			if($return = $this->m[0]->saveAll($this->data,array('validate'=>true))){
+				$msg = 'ok';
+				if(is_array($return) && in_array(false,$return,true)){ $msg = 'some'; }
+				$this->_flash('save_'.$msg);
+				$this->redirect(array('action'=>'index','admin'=>1,$parent));
+			}
+		}
+	}
 }
 ?>

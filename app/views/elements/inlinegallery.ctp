@@ -1,9 +1,10 @@
 <?php
-$model = isset($model) ? $model : $_m[0];
 $field = 'src';
-$header = isset($header) && $header ? $header : false;
-$atts = isset($atts) ? $atts : array();
-$grow = isset($grow) ? $grow : false;
+$model = empty($model) ? $_m[0] : $model;
+$header = empty($header) ? false : $header;
+$atts = empty($atts) ? array() : $atts;
+$grow = empty($grow) ? false : $grow;
+$rel = empty($rel) ? '' : $rel;
 
 if(isset($data) && $data){
 	echo $html->div('inlineGallery',null,$atts);
@@ -27,23 +28,28 @@ if(isset($data) && $data){
 		
 		if($src && file_exists(WWW_ROOT.$src)){
 			if($grow){
-				$rel = $resize->resize($src,array('h'=>180,'urlonly'=>true));
+				$rel_th = $resize->resize($src,array('h'=>180,'urlonly'=>true));
 				$rela = '';
 				$class = '';
 				$href = 'javascript:;';
 			} else {
-				$rel = '';
+				$rel_th = '';
 				$rela = 'pbox';
 				$class = ' pulsembox';
 				$href = '/'.$src;
 			}
+
+			$rela.= $rel;
 			
-			echo $html->link($resize->resize($src,array('h'=>90,'atts'=>array('alt'=>$desc_raw,'rel'=>$rel))),$href,array('class'=>'inlineGal'.$class,'rel'=>$rela,'name'=>$desc,'title'=>$desc_raw));
+			echo
+				$html->div('thumb product')	,
+					$html->link($resize->resize($src,array('w'=>206,'h'=>180,'pad'=>true,'atts'=>array('alt'=>$desc_raw,'rel'=>$rel_th))),$href,array('class'=>'inlineGal'.$class,'rel'=>$rela,'name'=>$desc,'title'=>$desc_raw)),
+					$html->tag('h1',$desc,'title'),
+				'</div>';
 		}
 	}
 	
 	echo '</div>';
 		
-} else 
-	echo $html->para('noresults','No hay elementos que mostrar');
+}
 ?>

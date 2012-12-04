@@ -4,7 +4,7 @@ echo
 		$html->div('grey_top',$html->div('center','')),
 		$html->div('grey_bottom'),
 			$html->div('center'),
-				$html->div('banners',$this->element('banners',array()),array('id'=>'banners')),
+				$html->div('banners',$this->element('banners'),array('id'=>'banners')),
 				$html->link('Comprometidos con el medio ambiente',array('controller'=>'medio_ambiente','action'=>'index'),array('class'=>'comprometidos_medio_ambiente')),
 			'</div>',
 		'</div>',
@@ -16,9 +16,11 @@ echo
 			$html->tag('li',$html->link('Contacto',array('controller'=>'contacto','action'=>'index'))),
 		'</ul>',
 		$html->para(null,'Buenos Aires #2260 Colonia Providencia, Guadalajara, Jalisco, México.'),
-		$html->para(null,'Tel. (+52) 33-38178409, (+52) 33-38178505,<br/>01(800)00-34437(egger) 01(800)00-83269 (tecny)'),
+		$html->para(null,'Tel. (+52) 33-38178409, (+52) 33-38178505,<br/>01(800)00-83269 (tecny) 01(800)00-34437(egger)'),
 		$html->para(null,$util->ofuscar('info@tecnyshop.mx')),
 		$html->para(null,Configure::read('Site.name').' &copy; '.date('Y'),array('id'=>'copyright'));
+
+	$moo->showcase('banners',array('nav'=>'out'));
 ?>
 </div><!-- .center -->
 </div><!-- .footer -->

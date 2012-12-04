@@ -7,13 +7,12 @@ $extraFields = array();
 
 if($model == ''){ $extraFields = array('parent','parent_nombre','parent_id'); }
 
-$fields = Set::normalize(am($extraFields,array_diff(array_keys($m->_schema),array('created','portada','activo','src',strtolower($_m[0]).'_id'))));
+$fields = Set::normalize(am($extraFields,array_diff(array_keys($m->_schema),array('created','portada','activo','src',Inflector::underscore($_m[0]).'_id'))));
 
 /////////
 
 if($model == ''){
-	$fields['parent'] = array('options'=>array(
-	));
+	$fields['parent'] = array('options'=>array());
 	$fields['parent_nombre'] = array('type'=>'text','label'=>'Artículo relacionado');
 	$fields['parent_id'] = array('type'=>'text','div'=>'hide');
 }

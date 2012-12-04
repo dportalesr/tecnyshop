@@ -3,10 +3,11 @@
 $regex = array(
 	'pass'=>array('id'),
 	//'sub'=>'[a-zA-Z0-9\-]+|^$',
-	//'category'=>'[0-9]+_[a-zA-Z0-9\-]+|^$',
+	'category'=>'[0-9]+_[a-zA-Z0-9\-]+|^$',
 	'id'=>'[0-9]+_[a-zA-Z0-9\-]+'
 );
 
+	Router::connect('/productos/:category/:id',array('controller'=>'products','action'=>'ver'),$regex);
 //route
 
 foreach(Configure::read('Modules') as $controller => $mod){

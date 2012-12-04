@@ -1,6 +1,6 @@
 <?php
 $config['Site'] = array(
-	'name'=>'Nombre de la Empresa',
+	'name'=>'TecnyShop',
 	'domain'=>$_SERVER['SERVER_NAME'],
 	'email'=>'info@'.$_SERVER['SERVER_NAME'],
 	'slogan'=>'Slogan',
