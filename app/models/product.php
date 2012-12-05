@@ -3,7 +3,9 @@ class Product extends AppModel {
 	var $name = 'Product';
 	var $labels = array(
 		'category_id'=>'categoría',
-		'productimg_count'=>'Imágenes'
+		'productimg_count'=>'Imágenes',
+		'keywords'=>'META Palabras Clave',
+		'description'=>'META Descripción'
 	);
 
 	var $hasMany = array(

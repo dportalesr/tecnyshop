@@ -1,7 +1,7 @@
 <?php
 uses('L10n');
 class AppController extends Controller {
-	var $components = array('Cookie','RequestHandler','Simplepie','Session','Cart');
+	var $components = array('Cookie','RequestHandler','Simplepie','Session');
 	var $helpers = array('Html', 'Form', 'Session','Js','Moo','Util','Text','Resize');
 	var $detour = false;
 	var $detourFrom = false;
@@ -55,14 +55,22 @@ class AppController extends Controller {
 		
 		//// CACHE
 		if(strpos($this->action,'admin_')===false){
-			/*
 			if(Cache::read(strtolower('Banner').'_recent') === false){
 				$this->loadModel('Banner');
 				Cache::write(strtolower('Banner').'_recent',$this->Banner->find_(array('contain'=>false)));
 			}
-			*/
 			
-			//fcache
+			if(true || Cache::read('category_product_recent') === false){
+				$this->loadModel('Category');
+				
+				Cache::write('category_product_recent',$this->Category->find_(array(
+					'contain'=>array('Product'=>array(
+						'fields'=>array('id','category_id','nombre','slug'),
+						'order'=>'Product.orden ASC'
+					)),
+					'fields'=>array('id','parent_id','slug','nombre')
+				)));
+			}
 		}
 			
 		//// Session
@@ -189,7 +197,7 @@ class AppController extends Controller {
 		$siteVars = Configure::read('Site');
 		
 		foreach($layoutVars as $layoutVar){
-			if(empty($this->viewVars[$layoutVar.'_for_layout'])){
+			if(!isset($this->viewVars[$layoutVar.'_for_layout'])){
 				$layoutVarContent = '';
 
 				if(!empty($siteVars[$layoutVar])){
