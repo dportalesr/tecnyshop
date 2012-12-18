@@ -329,6 +329,19 @@ a.comprometidos_medio_ambiente {
 	overflow: hidden;
 	background:transparent url(/img/comprometidos_medio_ambiente.png) no-repeat center center;
 }
+.descargables { margin:20px 0 0 0;width: 200px; }
+.descargables .title {
+	color:#F6851F;
+	font-weight:bold;
+	padding-bottom:6px;
+	border-bottom:#999 solid 1px;
+}
+.descargables li { margin:0 0 3px; }
+.descargables li a {
+	display:block;
+	padding:4px 22px 4px 0;
+	background:transparent url(/img/download.png) no-repeat right 3px;
+}
 
 /*** Detail ***/
 

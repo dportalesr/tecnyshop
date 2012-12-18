@@ -19,10 +19,10 @@ echo
 			'</div>',
 		'</div>',
 		$html->div('info'),
-			$html->para(null,'TECNY <br/>01-800 00 83269'),
-			$html->para(null,'EGGER <br/>01-800 00 34437'),
+			$html->para(null,'TECNY <br/>01-800 00 83269 (tecny)'),
+			$html->para(null,'EGGER <br/>01-800 00 34437 (egger)'),
 			$html->para(null,'Teléfonos <br/>52-33-38178409 <br/>52-33-38178505'),
-			$html->para(null,'Buenos Aires #2260 <br/>Col. providencia <br/> Guadalajara, Jalisco, México.'),
+			$html->para(null,'Buenos Aires #2260 <br/>Col. Providencia <br/> Guadalajara, Jalisco, México.'),
 			$html->para('email',$util->ofuscar('info@'.Configure::read('Site.domain'))),
 			/*
 			$html->div('title title3','Cómo llegar'),

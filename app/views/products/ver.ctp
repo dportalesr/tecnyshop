@@ -16,6 +16,8 @@ echo
 		$this->element('inlinegallery',array('data'=>$item[$_m[0].'img'])),
 		$this->element('share'),
 	'</div>';
+
+echo $this->element('pdfs');
 ?>
 </div>
 </div><!-- content -->
